@@ -1,0 +1,8 @@
+{
+    "cmake.buildDirectory": "${workspaceFolder}/build/vscode",
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "cmake.configureSettings": {
+        "EXPAT_WITH_DISABLED_APPS": "OFF",
+        "EXPAT_WITH_DISABLED_TEST_APPS": "OFF"
+    }
+}
