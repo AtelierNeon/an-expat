@@ -44,9 +44,9 @@ $ProjectWithWorkaroundSpectre = if ($Env:MY_PROJECT_WITH_WORKAROUND_SPECTRE) {$E
 ####
 #### Project component level config
 ####
-$ProjectExpatWithDisabledApps = if ($Env:MY_PROJECT_EXPAT_WITH_DISABLED_APPS) {$Env:MY_PROJECT_EXPAT_WITH_DISABLED_APPS} else {'OFF'}
-$ProjectExpatWithDisabledTestApps = if ($Env:MY_PROJECT_EXPAT_WITH_DISABLED_TEST_APPS) {$Env:MY_PROJECT_EXPAT_WITH_DISABLED_TEST_APPS} else {'OFF'}
 $ProjectExpatWithSharedLibraries = if ($Env:MY_PROJECT_EXPAT_WITH_SHARED_LIBRARIES) {$Env:MY_PROJECT_EXPAT_WITH_SHARED_LIBRARIES} else {'OFF'}
+$ProjectExpatWithoutApps = if ($Env:MY_PROJECT_EXPAT_WITHOUT_APPS) {$Env:MY_PROJECT_EXPAT_WITHOUT_APPS} else {'OFF'}
+$ProjectExpatWithoutTestApps = if ($Env:MY_PROJECT_EXPAT_WITHOUT_TEST_APPS) {$Env:MY_PROJECT_EXPAT_WITHOUT_TEST_APPS} else {'OFF'}
 
 ##
 ## My variables
@@ -56,14 +56,14 @@ $MyCmakeCommonArgumentList = @(
         "-T $ProjectToolset",
         "-DMY_REVISION=$ProjectRevision"
 )
-if ('ON'.Equals($ProjectExpatWithDisabledApps)) {
-    $MyCmakeCommonArgumentList += "-DEXPAT_WITH_DISABLED_APPS=$ProjectExpatWithDisabledApps"
-}
-if ('ON'.Equals($ProjectExpatWithDisabledTestApps)) {
-    $MyCmakeCommonArgumentList += "-DEXPAT_WITH_DISABLED_TEST_APPS=$ProjectExpatWithDisabledTestApps"
-}
 if ('ON'.Equals($ProjectExpatWithSharedLibraries)) {
     $MyCmakeCommonArgumentList += "-DEXPAT_WITH_SHARED_LIBRARIES=$ProjectExpatWithSharedLibraries"
+}
+if ('ON'.Equals($ProjectExpatWithoutApps)) {
+    $MyCmakeCommonArgumentList += "-DEXPAT_WITHOUT_APPS=$ProjectExpatWithoutApps"
+}
+if ('ON'.Equals($ProjectExpatWithoutTestApps)) {
+    $MyCmakeCommonArgumentList += "-DEXPAT_WITHOUT_TEST_APPS=$ProjectExpatWithoutTestApps"
 }
 if ('ON'.Equals($ProjectWithSharedVcrt)) {
     $MyCmakeCommonArgumentList += "-DBUILD_WITH_SHARED_VCRT=$ProjectWithSharedVcrt"
@@ -133,9 +133,9 @@ Write-Information "[PowerShell] Project information: Disable clean build: $Proje
 Write-Information "[PowerShell] Project information: CMake generator: `"$MyCmakeGenerator`""
 Write-Information "[PowerShell] Project information: CMake toolset: `"$ProjectToolset`""
 Write-Information "[PowerShell] Project information: CMake platform to build: $MyCmakePlatformToBuildListString"
-Write-Information "[PowerShell] Component information: expat with disabled apps: $ProjectExpatWithDisabledApps"
-Write-Information "[PowerShell] Component information: expat with disabled test apps: $ProjectExpatWithDisabledTestApps"
 Write-Information "[PowerShell] Component information: expat with shared libraries: $ProjectExpatWithSharedLibraries"
+Write-Information "[PowerShell] Component information: expat without apps: $ProjectExpatWithoutApps"
+Write-Information "[PowerShell] Component information: expat without test apps: $ProjectExpatWithoutTestApps"
 
 
 
